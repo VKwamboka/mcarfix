@@ -1,76 +1,32 @@
 import React from "react";
-import { Ionicons } from "@expo/vector-icons";
-import { createAppContainer } from "react-navigation";
-import { createMaterialTopTabNavigator } from "react-navigation-tabs";
+import { ImageBackground, StyleSheet, Text, View } from "react-native";
 
-import ProfileScreen from "./screens/ProfileScreen";
-import ImagesScreen from "./screens/ImagesScreen";
-import VideoScreen from "./screens/VideosScreen";
+const image = { uri: "https://reactjs.org/logo-og.png" };
 
-const TabNavigator = createMaterialTopTabNavigator(
-{
-	Profile: {
-	screen: ProfileScreen,
-	navigationOptions: {
-		tabBarLabel: "Profile",
-		showLabel: ({ focused }) => {
-		console.log(focused);
-		return focused ? true : false;
-		},
-		tabBarIcon: (tabInfo) => (
-		<Ionicons
-			name="ios-person-circle-outline"
-			size={tabInfo.focused ? 25 : 20}
-			color={tabInfo.tintColor}
-		/>
-		),
-	},
-	},
-	Images: {
-	screen: ImagesScreen,
-	navigationOptions: {
-		tabBarLabel: "Images",
-		tabBarIcon: (tabInfo) => (
-		<Ionicons
-			name="ios-images-outline"
-			size={tabInfo.focused ? 24 : 20}
-			color={tabInfo.tintColor}
-		/>
-		),
-	},
-	},
-	Video: {
-	screen: VideoScreen,
-	navigationOptions: {
-		tabBarLabel: "Videos",
-		tabBarIcon: (tabInfo) => (
-		<Ionicons
-			name="ios-videocam-outline"
-			size={tabInfo.focused ? 25 : 20}
-			color={tabInfo.tintColor}
-		/>
-		),
-	},
-	},
-},
-{
-	tabBarOptions: {
-	showIcon: true,
-
-	style: {
-		backgroundColor: "#006600",
-		marginTop: 28,
-	},
-	},
-}
+const App = () => (
+  <View style={styles.container}>
+    <ImageBackground source={image} resizeMode="cover" style={styles.image}>
+      <Text style={styles.text}>Inside</Text>
+    </ImageBackground>
+  </View>
 );
 
-const Navigator = createAppContainer(TabNavigator);
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  image: {
+    flex: 1,
+    justifyContent: "center"
+  },
+  text: {
+    color: "white",
+    fontSize: 42,
+    lineHeight: 84,
+    fontWeight: "bold",
+    textAlign: "center",
+    backgroundColor: "#000000c0"
+  }
+});
 
-export default function App() {
-return (
-	<Navigator>
-	<ProfileScreen />
-	</Navigator>
-);
-}
+export default App;
